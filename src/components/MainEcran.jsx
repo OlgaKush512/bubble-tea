@@ -10,7 +10,7 @@ const MainEcran = () => {
       <Paper sx={{ borderRadius: '16px', mt: 10 }}>
         <Grid
           container
-          columns={12}
+          columns={10}
           justifyContent="center"
           spacing={1}
           sx={{ padding: '10px' }}
@@ -19,7 +19,7 @@ const MainEcran = () => {
             <PreviewTea />
             <Ingredients />
           </Grid>
-          <Grid item sx={2}>
+          <Grid item xs={2}>
             <Generator />
           </Grid>
         </Grid>

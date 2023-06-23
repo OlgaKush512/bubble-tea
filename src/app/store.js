@@ -1,14 +1,18 @@
 import { configureStore } from '@reduxjs/toolkit';
-import nameFormReducer from '../components/loginFormSlice';
-import inputLoginReducer from '../components/inputLoginSlice';
-import homePageReducer from '../components/homePageSlice';
-import whichGameReducer from '../components/whichGameSlice';
+import inputNameReducer from '../components/slices/inputNameSlice';
+import theReducer from '../components/slices/theSlice';
+import cupReducer from '../components/slices/cupSlice';
+import tapiocaReducer from '../components/slices/tapiocaSlice';
+import sizeReducer from '../components/slices/sizeSlice';
+
 
 export const store = configureStore({
   reducer: {
-    loginForm: loginFormReducer,
-    inputLogin: inputLoginReducer,
-    homePage: homePageReducer,
-    whichGame: whichGameReducer,
+    name: inputNameReducer,
+    the: theReducer,
+    cup: cupReducer,
+    tapioca: tapiocaReducer,
+    size: sizeReducer,
+
   },
 });
