@@ -1,10 +1,11 @@
-import { Box, Grid, Paper, Typography } from '@mui/material';
-import React from 'react';
-import CupChoice from './CupChoice';
-import TheChoice from './TheChoice';
-import TapiocaChoice from './TapiocaChoice';
-import SizeChoice from './SizeChoice';
-import NameChoice from './NameChoice';
+import { Box, Grid, Paper, Typography } from "@mui/material";
+import React from "react";
+import CupChoice from "./choises/CupChoice";
+import TheChoice from "./choises/TheChoice";
+import TapiocaChoice from "./choises/TapiocaChoice";
+import SizeChoice from "./choises/SizeChoice";
+import NameChoice from "./choises/NameChoice";
+import FontChoice from "./choises/FontChoice";
 
 const Generator = () => {
   return (
@@ -12,8 +13,9 @@ const Generator = () => {
       <Grid container justifyContent="center">
         <Paper
           sx={{
-            height: '80vh',
-            borderRadius: '4px 16px 16px 4px ',
+            height: { md: "80vh", xs: "50vh" },
+            width: { md: "auto", xs: "100%" },
+            borderRadius: "16px",
           }}
           elevation={0}
         >
@@ -21,6 +23,7 @@ const Generator = () => {
             Bubble Tea Generator
           </Typography>
           <NameChoice />
+          <FontChoice />
           <CupChoice />
           <TheChoice />
           <TapiocaChoice />

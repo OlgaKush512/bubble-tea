@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
   name: '',
+  isSend: false,
 };
 
 export const inputNameSlice = createSlice({
@@ -11,8 +12,11 @@ export const inputNameSlice = createSlice({
     getName: (state, action) => {
       state.name = action.payload;
     },
+    isSend: (state, action) => {
+      state.isSend = action.payload;
+    }
   },
 });
 
-export const { getName } = inputNameSlice.actions;
+export const { getName, isSend } = inputNameSlice.actions;
 export default inputNameSlice.reducer;

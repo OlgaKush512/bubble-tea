@@ -1,10 +1,10 @@
-import { Grid, Paper } from '@mui/material';
-import React, { useState } from 'react';
-import { useSelector } from 'react-redux';
+import { Grid, Paper } from "@mui/material";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
-const tea = ['#9DBEA2', '#FE8261', '#9A5B46'];
-const bubble = ['#8F3939', '#FFCE9F', '#3A3B59'];
-const smile = ['#FF728A', '#FFEF72', '#7280FF'];
+const tea = ["#9DBEA2", "#FE8261", "#9A5B46"];
+const bubble = ["#8F3939", "#FFCE9F", "#3A3B59"];
+const smile = ["#FF728A", "#FFEF72", "#7280FF"];
 
 const lighter = (col, amt) => {
   col = col.slice(1);
@@ -17,7 +17,7 @@ const lighter = (col, amt) => {
   let g = (num & 0x0000ff) + amt;
   g = g > 255 ? 255 : g < 0 ? 0 : g;
 
-  return '#' + (g | (b << 8) | (r << 16)).toString(16);
+  return "#" + (g | (b << 8) | (r << 16)).toString(16);
 };
 
 const Ingredients = () => {
@@ -35,8 +35,8 @@ const Ingredients = () => {
         <Paper
           sx={{
             mt: 1,
-            height: '19vh',
-            borderRadius: '4px 4px 4px 16px ',
+            height: "19vh",
+            borderRadius: "4px 4px 4px 16px ",
           }}
           elevation={0}
         >
@@ -63,8 +63,8 @@ const Ingredients = () => {
         <Paper
           sx={{
             mt: 1,
-            height: '19vh',
-            borderRadius: '4px',
+            height: "19vh",
+            borderRadius: "4px",
           }}
           elevation={0}
         >
@@ -119,8 +119,8 @@ const Ingredients = () => {
         <Paper
           sx={{
             mt: 1,
-            height: '19vh',
-            borderRadius: '4px 4px 4px 4px ',
+            height: "19vh",
+            borderRadius: "4px 4px 16px 4px ",
           }}
           elevation={0}
         >

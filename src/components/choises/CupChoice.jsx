@@ -1,14 +1,7 @@
-import {
-  FormControl,
-  Grid,
-  InputLabel,
-  MenuItem,
-  Select,
-  Typography,
-} from '@mui/material';
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { getCup } from './slices/cupSlice';
+import { FormControl, Grid, MenuItem, Select, Typography } from "@mui/material";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getCup } from "../slices/cupSlice";
 
 const CupChoice = () => {
   const dispatch = useDispatch();

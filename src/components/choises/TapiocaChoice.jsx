@@ -1,14 +1,7 @@
-import {
-  FormControl,
-  Grid,
-  InputLabel,
-  MenuItem,
-  Select,
-  Typography,
-} from '@mui/material';
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { getTapioca } from './slices/tapiocaSlice';
+import { FormControl, Grid, MenuItem, Select, Typography } from "@mui/material";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getTapioca } from "../slices/tapiocaSlice";
 
 const TapiocaChoice = () => {
   const dispatch = useDispatch();

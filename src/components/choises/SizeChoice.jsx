@@ -1,24 +1,22 @@
-import { Grid, Slider, Typography } from '@mui/material';
-import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { getSize } from './slices/sizeSlice';
+import { Grid, Slider, Typography } from "@mui/material";
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getSize } from "../slices/sizeSlice";
 const marks = [
   {
     value: 0,
-    label: 'S',
+    label: "S",
   },
   {
     value: 50,
-    label: 'M',
+    label: "M",
   },
 
   {
     value: 100,
-    label: 'L',
+    label: "L",
   },
 ];
-
-
 
 const SizeChoice = () => {
   const dispatch = useDispatch();
@@ -33,14 +31,13 @@ const SizeChoice = () => {
 
   return (
     <>
-      <Grid container justifyContent="center" alignItems="center">
+      <Grid container justifyContent="center" alignItems="center" p={1}>
         <Grid item xs={4}>
-          <Typography textAlign="left" ml={2}>
+          <Typography textAlign="left" pl={2}>
             SIZE
           </Typography>
         </Grid>
         <Grid item xs={1} justifyContent="center" />
-
         <Grid item xs={6} justifyContent="center">
           <Slider
             aria-label="Restricted values"

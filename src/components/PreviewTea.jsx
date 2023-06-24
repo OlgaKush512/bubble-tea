@@ -1,10 +1,18 @@
-import { Box, Paper, Typography } from '@mui/material';
-import React from 'react';
-import { useSelector } from 'react-redux';
+import { Box, Paper, Typography } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { isSend } from "../components/slices/inputNameSlice";
+const tea = ["#9DBEA2", "#FE8261", "#9A5B46"];
+const bubble = ["#8F3939", "#FFCE9F", "#3A3B59"];
+const smile = ["#FF728A", "#FFEF72", "#7280FF"];
 
-const tea = ['#9DBEA2', '#FE8261', '#9A5B46'];
-const bubble = ['#8F3939', '#FFCE9F', '#3A3B59'];
-const smile = ['#FF728A', '#FFEF72', '#7280FF'];
+const fonts = [
+  "Ysabeau SC",
+  "Caprasimo",
+  "Pathway Extreme",
+  "Lexend Peta",
+  "Josefin Slab",
+];
 
 const lighter = (col, amt) => {
   col = col.slice(1);
@@ -17,16 +25,25 @@ const lighter = (col, amt) => {
   let g = (num & 0x0000ff) + amt;
   g = g > 255 ? 255 : g < 0 ? 0 : g;
 
-  return '#' + (g | (b << 8) | (r << 16)).toString(16);
+  return "#" + (g | (b << 8) | (r << 16)).toString(16);
 };
 
-const whichSize = (i) => {
-  if (i === 'S') return 150;
-  if (i === 'M') return 200;
-  if (i === 'L') return 300;
+const calculateScale = (i) => {
+  switch (i) {
+    case "S":
+      return 1;
+    case "M":
+      return 1.2;
+    case "L":
+      return 1.5;
+    default:
+      return 1;
+  }
 };
 
 const PreviewTea = () => {
+  const dispatch = useDispatch();
+
   const theThe = useSelector((state) => state.the.the);
   const cup = useSelector((state) => state.cup.cup);
   const tapioca = useSelector((state) => state.tapioca.tapioca);
@@ -35,35 +52,47 @@ const PreviewTea = () => {
   const foundThe = theThe ? theThe : 0;
   const foundCup = cup ? cup : 0;
   const foundTapioca = tapioca ? tapioca : 0;
-  const foundSize = size ? size : 'S';
+  const foundSize = size ? size : "S";
 
-  const theSize = whichSize(foundSize);
+  const theSize = calculateScale(foundSize);
+
+  const name = useSelector((state) => state.name.name);
+  const isNameSend = useSelector((state) => state.name.isSend);
+  const [theName, setTheName] = useState("");
+  useEffect(() => {
+    if (isNameSend === true) {
+      setTheName(name);
+      dispatch(isSend(false));
+    }
+  }, [isNameSend]);
+
+  const font = useSelector((state) => state.font.font);
+  const foundFont = font ? font : 0;
 
   return (
     <>
       <Box justifyContent="center">
         <Paper
           sx={{
-            height: '60vh',
-            borderRadius: '16px 4px 4px 4px ',
+            height: "60vh",
+            borderRadius: "16px 16px 4px 4px ",
           }}
           elevation={0}
         >
           <Box>
             <Box
               sx={{
-                height: '50vh',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                // border: 'solid',
+                height: "50vh",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
               }}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width={theSize}
-                viewBox="0 0 133.2 188.9"
-                // style={{ border: 'solid' }}
+                width={220}
+                viewBox={`0 0 133.2 188.9`}
+                transform={`scale(${theSize}, ${theSize})`}
               >
                 <g id="background">
                   <path
@@ -149,7 +178,15 @@ const PreviewTea = () => {
             </Box>
           </Box>
           <Box>
-            <Typography>Name</Typography>
+            <Typography
+              sx={{
+                fontFamily: fonts[foundFont],
+                fontSize: 40,
+                fontWeight: 500,
+              }}
+            >
+              {theName}
+            </Typography>
           </Box>
         </Paper>
       </Box>

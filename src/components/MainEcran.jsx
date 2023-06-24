@@ -1,25 +1,25 @@
-import { Box, Container, Grid, Paper, Stack } from '@mui/material';
-import React from 'react';
-import Generator from './Generator';
-import Ingredients from './Ingredients';
-import PreviewTea from './PreviewTea';
+import { Box, Container, Grid, Paper, Stack } from "@mui/material";
+import React from "react";
+import Generator from "./Generator";
+import Ingredients from "./Ingredients";
+import PreviewTea from "./PreviewTea";
 
 const MainEcran = () => {
   return (
-    <Container sx={{ minWidth: '90vw' }}>
-      <Paper sx={{ borderRadius: '16px', mt: 10 }}>
+    <Container sx={{ minWidth: "90vw" }}>
+      <Paper sx={{ borderRadius: "16px", mt: 10 }}>
         <Grid
           container
           columns={10}
           justifyContent="center"
           spacing={1}
-          sx={{ padding: '10px' }}
+          sx={{ padding: "10px" }}
         >
-          <Grid item xs={8}>
+          <Grid item xs={10} md={8}>
             <PreviewTea />
             <Ingredients />
           </Grid>
-          <Grid item xs={2}>
+          <Grid item xs={10} md={2}>
             <Generator />
           </Grid>
         </Grid>

@@ -1,16 +1,9 @@
-import { FormControl, Grid, MenuItem, Select, Typography } from '@mui/material';
-// import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { FormControl, Grid, MenuItem, Select, Typography } from "@mui/material";
+import { useSelector, useDispatch } from "react-redux";
 
-import { getThe } from './slices/theSlice';
+import { getThe } from "../slices/theSlice";
 
 const TheChoice = () => {
-  // const [the, setTea] = useState('');
-
-  // const handleChangeTea = (event) => {
-  //   setTea(event.target.value);
-  // };
-
   const dispatch = useDispatch();
   const the = useSelector((state) => state.the.the);
   return (
