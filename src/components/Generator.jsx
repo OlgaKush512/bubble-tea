@@ -13,8 +13,8 @@ const Generator = () => {
       <Grid container justifyContent="center">
         <Paper
           sx={{
-            height: { md: "80vh", xs: "50vh" },
-            width: { md: "auto", xs: "100%" },
+            height: { lg: "80vh", xs: "50vh" },
+            width: { lg: "auto", xs: "100%" },
             borderRadius: "16px",
           }}
           elevation={0}

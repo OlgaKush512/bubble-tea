@@ -1,4 +1,4 @@
-import { Box, Container, Grid, Paper, Stack } from "@mui/material";
+import { Container, Grid, Paper } from "@mui/material";
 import React from "react";
 import Generator from "./Generator";
 import Ingredients from "./Ingredients";
@@ -15,11 +15,11 @@ const MainEcran = () => {
           spacing={1}
           sx={{ padding: "10px" }}
         >
-          <Grid item xs={10} md={8}>
+          <Grid item xs={10} lg={8}>
             <PreviewTea />
             <Ingredients />
           </Grid>
-          <Grid item xs={10} md={2}>
+          <Grid item xs={10} lg={2}>
             <Generator />
           </Grid>
         </Grid>
