@@ -2,9 +2,9 @@ import { Box, Paper, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { isSend } from "../components/slices/inputNameSlice";
+
 const tea = ["#9DBEA2", "#FE8261", "#9A5B46"];
 const bubble = ["#8F3939", "#FFCE9F", "#3A3B59"];
-const smile = ["#FF728A", "#FFEF72", "#7280FF"];
 
 const fonts = [
   "Ysabeau SC",
@@ -43,26 +43,28 @@ const calculateScale = (i) => {
 
 const PreviewTea = () => {
   const dispatch = useDispatch();
-
-  const theThe = useSelector((state) => state.the.the);
-  const cup = useSelector((state) => state.cup.cup);
-  const tapioca = useSelector((state) => state.tapioca.tapioca);
-  const size = useSelector((state) => state.size.size);
-
-  const foundThe = theThe || 0;
-  const foundCup = cup || 0;
-  const foundTapioca = tapioca || 0;
-  const foundSize = size || "S";
-
-  const theSize = calculateScale(foundSize);
-
+  //recuperation des state de redux
+  const teaState = useSelector((state) => state.tea.tea);
+  const cupState = useSelector((state) => state.cup.cup);
+  const tapiocaState = useSelector((state) => state.tapioca.tapioca);
+  const sizeState = useSelector((state) => state.size.size);
   const name = useSelector((state) => state.name.name);
+
+  //recuperation des values
+
+  const foundTea = teaState || 0;
+  const foundCup = cupState || 0;
+  const foundTapioca = tapiocaState || 0;
+
   const isNameSend = useSelector((state) => state.name.isSend);
-  const [theName, setTheName] = useState("");
+  const [nameState, setNameState] = useState("");
+
+  const foundSize = sizeState || "S";
+  const scaledSize = calculateScale(foundSize);
 
   useEffect(() => {
     if (isNameSend === true) {
-      setTheName(name);
+      setNameState(name);
       dispatch(isSend(false));
     }
   }, [isNameSend]);
@@ -92,7 +94,7 @@ const PreviewTea = () => {
               xmlns="http://www.w3.org/2000/svg"
               width={220}
               viewBox={`0 0 133.2 188.9`}
-              transform={`scale(${theSize}, ${theSize})`}
+              transform={`scale(${scaledSize}, ${scaledSize})`}
             >
               <g id="background">
                 <path
@@ -136,11 +138,11 @@ const PreviewTea = () => {
               <g id="tea">
                 <path
                   opacity="0.52"
-                  fill={`${lighter(tea[foundThe], -20)}`}
+                  fill={`${lighter(tea[foundTea], -20)}`}
                   d="M109.1,71.7l-8.9,81.9c-1.4,13-12.3,22.9-25.4,22.9l-2.3,0l-14.8,0c-0.8,0-1.5,0-2.2-0.1h0c-12-1.1-21.7-10.6-23-22.8l-8.6-82c3.8,1.4,7.6,2.7,11.3,3.7c1.7,0.5,3.4,0.9,5.1,1.3h0c2.1,0.5,4.3,0.9,6.4,1.3l0,0c1.9,0.3,3.7,0.6,5.6,0.8c2.5,0.3,5,0.5,7.5,0.6c8,0.4,16.1,0,24.3-1.3C92.5,76.8,100.8,74.7,109.1,71.7z"
                 />
                 <path
-                  fill={`${lighter(tea[foundThe], -40)}`}
+                  fill={`${lighter(tea[foundTea], -40)}`}
                   d="M28.9,119.1l3.6,34.5c1.4,13,12.3,22.9,25.3,22.9l17.1,0c13,0,24-9.8,25.4-22.9l6.2-57.2C79.6,85,61.3,112.6,28.9,119.1z"
                 />
               </g>
@@ -185,7 +187,7 @@ const PreviewTea = () => {
               fontWeight: 500,
             }}
           >
-            {theName}
+            {nameState}
           </Typography>
         </Box>
       </Paper>

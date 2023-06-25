@@ -1,6 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit';
 import inputNameReducer from '../components/slices/inputNameSlice';
-import theReducer from '../components/slices/theSlice';
+import teaReducer from '../components/slices/teaSlice';
 import fontReducer from '../components/slices/fontSlice';
 
 import cupReducer from '../components/slices/cupSlice';
@@ -12,7 +12,7 @@ export const store = configureStore({
   reducer: {
     name: inputNameReducer,
     font: fontReducer,
-    the: theReducer,
+    tea: teaReducer,
     cup: cupReducer,
     tapioca: tapiocaReducer,
     size: sizeReducer,

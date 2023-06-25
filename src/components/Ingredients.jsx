@@ -1,10 +1,9 @@
 import { Grid, Paper } from "@mui/material";
-import React, { useState } from "react";
+import React from "react";
 import { useSelector } from "react-redux";
 
 const tea = ["#9DBEA2", "#FE8261", "#9A5B46"];
 const bubble = ["#8F3939", "#FFCE9F", "#3A3B59"];
-const smile = ["#FF728A", "#FFEF72", "#7280FF"];
 
 const lighter = (col, amt) => {
   col = col.slice(1);
@@ -21,11 +20,11 @@ const lighter = (col, amt) => {
 };
 
 const Ingredients = () => {
-  const theThe = useSelector((state) => state.the.the);
+  const teaState = useSelector((state) => state.tea.tea);
   const cup = useSelector((state) => state.cup.cup);
   const tapioca = useSelector((state) => state.tapioca.tapioca);
 
-  const foundThe = theThe ? theThe : 0;
+  const foundTea = teaState ? teaState : 0;
   const foundCup = cup ? cup : 0;
   const foundTapioca = tapioca ? tapioca : 0;
 
@@ -48,11 +47,11 @@ const Ingredients = () => {
             <g id="tea">
               <path
                 opacity="0.52"
-                fill={`${lighter(tea[foundThe], -20)}`}
+                fill={`${lighter(tea[foundTea], -20)}`}
                 d="M109.1,71.7l-8.9,81.9c-1.4,13-12.3,22.9-25.4,22.9l-2.3,0l-14.8,0c-0.8,0-1.5,0-2.2-0.1h0c-12-1.1-21.7-10.6-23-22.8l-8.6-82c3.8,1.4,7.6,2.7,11.3,3.7c1.7,0.5,3.4,0.9,5.1,1.3h0c2.1,0.5,4.3,0.9,6.4,1.3l0,0c1.9,0.3,3.7,0.6,5.6,0.8c2.5,0.3,5,0.5,7.5,0.6c8,0.4,16.1,0,24.3-1.3C92.5,76.8,100.8,74.7,109.1,71.7z"
               />
               <path
-                fill={`${lighter(tea[foundThe], -40)}`}
+                fill={`${lighter(tea[foundTea], -40)}`}
                 d="M28.9,119.1l3.6,34.5c1.4,13,12.3,22.9,25.3,22.9l17.1,0c13,0,24-9.8,25.4-22.9l6.2-57.2C79.6,85,61.3,112.6,28.9,119.1z"
               />
             </g>

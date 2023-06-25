@@ -20,7 +20,6 @@ const marks = [
 
 const SizeChoice = () => {
   const dispatch = useDispatch();
-  const size = useSelector((state) => state.size.size);
 
   const handleChange = (event, value) => {
     const selectedMark = marks.find((mark) => mark.value === value);
@@ -32,13 +31,13 @@ const SizeChoice = () => {
   return (
     <>
       <Grid container justifyContent="center" alignItems="center" p={1}>
-        <Grid item xs={4}>
+        <Grid item xs={2} lg={5}>
           <Typography textAlign="left" pl={2}>
             SIZE
           </Typography>
         </Grid>
         <Grid item xs={1} justifyContent="center" />
-        <Grid item xs={6} justifyContent="center">
+        <Grid item xs={8} lg={5} justifyContent="center">
           <Slider
             aria-label="Restricted values"
             defaultValue={0}

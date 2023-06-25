@@ -13,7 +13,7 @@ const MainEcran = () => {
           columns={10}
           justifyContent="center"
           spacing={1}
-          sx={{ padding: "10px" }}
+          sx={{ pl: "10px", pr: "10px", pb: "10px", pt: "2px" }}
         >
           <Grid item xs={10} lg={8}>
             <PreviewTea />

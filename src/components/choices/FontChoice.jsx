@@ -10,12 +10,12 @@ const FontChoice = () => {
   return (
     <>
       <Grid container justifyContent="center" alignItems="center" p={1}>
-        <Grid item xs={4}>
+        <Grid item xs={2} lg={5}>
           <Typography textAlign="left" ml={2}>
             FONT
           </Typography>
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={10} lg={7}>
           <FormControl fullWidth size="small">
             <Select
               value={font}

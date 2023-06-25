@@ -1,11 +1,11 @@
 import { Box, Grid, Paper, Typography } from "@mui/material";
 import React from "react";
-import CupChoice from "./choises/CupChoice";
-import TheChoice from "./choises/TheChoice";
-import TapiocaChoice from "./choises/TapiocaChoice";
-import SizeChoice from "./choises/SizeChoice";
-import NameChoice from "./choises/NameChoice";
-import FontChoice from "./choises/FontChoice";
+import CupChoice from "./choices/CupChoice";
+import TeaChoice from "./choices/TeaChoice";
+import TapiocaChoice from "./choices/TapiocaChoice";
+import SizeChoice from "./choices/SizeChoice";
+import NameChoice from "./choices/NameChoice";
+import FontChoice from "./choices/FontChoice";
 
 const Generator = () => {
   return (
@@ -25,7 +25,7 @@ const Generator = () => {
           <NameChoice />
           <FontChoice />
           <CupChoice />
-          <TheChoice />
+          <TeaChoice />
           <TapiocaChoice />
           <SizeChoice />
         </Paper>
