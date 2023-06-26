@@ -1,7 +1,8 @@
-import { Grid, Slider, Typography } from '@mui/material';
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { Grid, Slider, Typography } from '@mui/material';
 import { getSize } from '../slices/sizeSlice';
+
 const marks = [
   {
     value: 0,

@@ -1,6 +1,6 @@
-import { FormControl, Grid, MenuItem, Select, Typography } from "@mui/material";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { FormControl, Grid, MenuItem, Select, Typography } from "@mui/material";
 import { getCup } from "../slices/cupSlice";
 
 const CupChoice = () => {

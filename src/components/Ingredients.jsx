@@ -1,23 +1,8 @@
-import { Grid, Paper } from "@mui/material";
-import React from "react";
-import { useSelector } from "react-redux";
-
-const tea = ["#9DBEA2", "#FE8261", "#9A5B46"];
-const bubble = ["#8F3939", "#FFCE9F", "#3A3B59"];
-
-const lighter = (col, amt) => {
-  col = col.slice(1);
-  const num = parseInt(col, 16);
-
-  let r = (num >> 16) + amt;
-  r = r > 255 ? 255 : r < 0 ? 0 : r;
-  let b = ((num >> 8) & 0x00ff) + amt;
-  b = b > 255 ? 255 : b < 0 ? 0 : b;
-  let g = (num & 0x0000ff) + amt;
-  g = g > 255 ? 255 : g < 0 ? 0 : g;
-
-  return "#" + (g | (b << 8) | (r << 16)).toString(16);
-};
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { Grid, Paper } from '@mui/material';
+import { lighter } from '../tools/functions';
+import { tea, bubble } from '../tools/data';
 
 const Ingredients = () => {
   const teaState = useSelector((state) => state.tea.tea);
@@ -34,8 +19,8 @@ const Ingredients = () => {
         <Paper
           sx={{
             mt: 1,
-            height: "19vh",
-            borderRadius: "4px 4px 4px 16px ",
+            height: '19vh',
+            borderRadius: '4px 4px 4px 16px ',
           }}
           elevation={0}
         >
@@ -62,8 +47,8 @@ const Ingredients = () => {
         <Paper
           sx={{
             mt: 1,
-            height: "19vh",
-            borderRadius: "4px",
+            height: '19vh',
+            borderRadius: '4px',
           }}
           elevation={0}
         >
@@ -118,8 +103,8 @@ const Ingredients = () => {
         <Paper
           sx={{
             mt: 1,
-            height: "19vh",
-            borderRadius: "4px 4px 16px 4px ",
+            height: '19vh',
+            borderRadius: '4px 4px 16px 4px ',
           }}
           elevation={0}
         >

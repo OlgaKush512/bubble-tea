@@ -2,91 +2,49 @@ import { Box, Paper, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { isSend } from '../components/slices/inputNameSlice';
+import { lighter, calculateScale, getRandomNumber } from '../tools/functions';
+import { tea, bubble, fonts } from '../tools/data';
 import './PreviewTea.css';
-
-const tea = ['#9DBEA2', '#FE8261', '#9A5B46'];
-const bubble = ['#8F3939', '#FFCE9F', '#3A3B59'];
-
-const fonts = [
-  'Ysabeau SC',
-  'Caprasimo',
-  'Pathway Extreme',
-  'Lexend Peta',
-  'Josefin Slab',
-];
-
-const lighter = (col, amt) => {
-  col = col.slice(1);
-  const num = parseInt(col, 16);
-
-  let r = (num >> 16) + amt;
-  r = r > 255 ? 255 : r < 0 ? 0 : r;
-  let b = ((num >> 8) & 0x00ff) + amt;
-  b = b > 255 ? 255 : b < 0 ? 0 : b;
-  let g = (num & 0x0000ff) + amt;
-  g = g > 255 ? 255 : g < 0 ? 0 : g;
-
-  return '#' + (g | (b << 8) | (r << 16)).toString(16);
-};
-
-const calculateScale = (i) => {
-  switch (i) {
-    case 'S':
-      return 1;
-    case 'M':
-      return 1.2;
-    case 'L':
-      return 1.45;
-    default:
-      return 1;
-  }
-};
-
-function getRandomNumber() {
-  return Math.floor(Math.random() * 14) - 10;
-}
 
 const PreviewTea = () => {
   const dispatch = useDispatch();
-  //recuperation des state de redux
+
+  //recuperation des states de redux
   const teaState = useSelector((state) => state.tea.tea);
   const cupState = useSelector((state) => state.cup.cup);
   const tapiocaState = useSelector((state) => state.tapioca.tapioca);
   const sizeState = useSelector((state) => state.size.size);
-  const name = useSelector((state) => state.name.name);
+  const nameState = useSelector((state) => state.name.name);
+  const isNameSend = useSelector((state) => state.name.isSend);
+  const isAnimated = useSelector((state) => state.animation.isAnimated);
+  const fontState = useSelector((state) => state.font.font);
+  const fillingState = useSelector((state) => state.filling.filling);
 
   //recuperation des values
 
   const foundTea = teaState || 0;
   const foundCup = cupState || 0;
   const foundTapioca = tapiocaState || 0;
-
-  const isNameSend = useSelector((state) => state.name.isSend);
-  const [nameState, setNameState] = useState('');
-  const isAnimated = useSelector((state) => state.animation.isAnimated);
-
   const foundSize = sizeState || 'S';
+  const foundFont = fontState ? fontState : 0;
+  const bubbleClass = isAnimated ? 'bubble' : '';
   const scaledSize = calculateScale(foundSize);
 
+  const [name, setName] = useState('');
   useEffect(() => {
     if (isNameSend === true) {
-      setNameState(name);
+      setName(nameState);
       dispatch(isSend(false));
     }
-  }, [isNameSend, dispatch, name]);
+  }, [isNameSend, dispatch, nameState]);
 
-  const font = useSelector((state) => state.font.font);
-  const foundFont = font ? font : 0;
-
-  const bubbleClass = isAnimated ? 'bubble' : '';
-
-  const fillingState = useSelector((state) => state.filling.filling);
   let filling;
   if (fillingState === 0) {
     filling = 1;
   } else {
     filling = fillingState;
   }
+
   return (
     <Box justifyContent="center">
       <Paper
@@ -118,7 +76,6 @@ const PreviewTea = () => {
                 <clipPath id="cut-off">
                   <path
                     d="M109.1,71.7l-8.9,81.9c-1.4,13-12.3,22.9-25.4,22.9l-2.3,0l-14.8,0c-0.8,0-1.5,0-2.2-0.1h0c-12-1.1-21.7-10.6-23-22.8l-8.6-82c3.8,1.4,7.6,2.7,11.3,3.7c1.7,0.5,3.4,0.9,5.1,1.3h0c2.1,0.5,4.3,0.9,6.4,1.3l0,0c1.9,0.3,3.7,0.6,5.6,0.8c2.5,0.3,5,0.5,7.5,0.6c8,0.4,16.1,0,24.3-1.3C92.5,76.8,100.8,74.7,109.1,71.7z"
-                    // d="M41.4,182.9c-4,0-7.6-2.2-9.6-5.7c-0.7-1.2-1.1-2.6-1.3-4l-12-108.6l-7.6,0c-2.8,0-5.1-2.3-5.1-5.1c0-0.2,0-0.4,0-0.6c0.3-2.6,2.5-4.5,5.1-4.5H14l105.1,0.2h3.1c2.8,0,5.1,2.3,5.1,5.1c0,0.2,0,0.4,0,0.6c-0.3,2.6-2.5,4.5-5,4.5h-7.6l-12.4,108.6c-0.2,1.9-1,3.8-2.1,5.3c-2.1,2.8-5.3,4.4-8.7,4.4L41.4,182.9z"
                     transform={`scale(1, ${100 / filling})`}
                   />
                 </clipPath>
@@ -243,7 +200,7 @@ const PreviewTea = () => {
               fontWeight: 500,
             }}
           >
-            {nameState}
+            {name}
           </Typography>
         </Box>
       </Paper>

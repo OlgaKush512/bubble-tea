@@ -1,7 +1,7 @@
-import { FormControl, Grid, MenuItem, Select, Typography } from "@mui/material";
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { getFont } from "../slices/fontSlice";
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { FormControl, Grid, MenuItem, Select, Typography } from '@mui/material';
+import { getFont } from '../slices/fontSlice';
 
 const FontChoice = () => {
   const dispatch = useDispatch();

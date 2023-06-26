@@ -1,5 +1,5 @@
-import { Grid, IconButton, TextField, Typography } from '@mui/material';
 import { useSelector, useDispatch } from 'react-redux';
+import { Grid, IconButton, TextField, Typography } from '@mui/material';
 import { getName, isSend } from '../slices/inputNameSlice';
 import { SvgConfirm } from '../../tools/svgImages';
 

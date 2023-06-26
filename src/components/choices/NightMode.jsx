@@ -1,9 +1,9 @@
-import { FormControlLabel, FormGroup, Grid } from '@mui/material';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { getNight } from '../slices/nightModeSlice';
+import { FormControlLabel, FormGroup, Grid } from '@mui/material';
 import Switch from '@mui/material/Switch';
 import ModeNightIcon from '@mui/icons-material/ModeNight';
+import { getNight } from '../slices/nightModeSlice';
 
 const NightMode = () => {
   const dispatch = useDispatch();
@@ -19,7 +19,6 @@ const NightMode = () => {
             />
           </FormGroup>
         </Grid>
-
         <Grid item>
           <ModeNightIcon />
         </Grid>

@@ -1,8 +1,8 @@
-import { FormControlLabel, FormGroup, Grid } from '@mui/material';
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { getAnimation } from '../slices/animationSlice';
+import { FormControlLabel, FormGroup, Grid } from '@mui/material';
 import Switch from '@mui/material/Switch';
+import { getAnimation } from '../slices/animationSlice';
 
 const AnimationButton = () => {
   const dispatch = useDispatch();

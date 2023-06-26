@@ -1,6 +1,6 @@
-import { Grid, Slider, Typography } from '@mui/material';
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Grid, Slider, Typography } from '@mui/material';
 import { getFilling } from '../slices/fillingSlice';
 
 const FillUpChoice = () => {
