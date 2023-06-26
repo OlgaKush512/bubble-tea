@@ -1,0 +1,39 @@
+body::before {
+  background: url('/src/images/3.png') no-repeat center center;
+  background-size: cover;
+  content: ' ';
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  will-change: transform;
+  z-index: -1;
+  opacity: 0.1;
+}
+
+body.new::before {
+  background: url('/src/images/3.png') no-repeat center center;
+  background-size: cover;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  will-change: transform;
+  z-index: -1;
+  opacity: 0.2;
+}
+
+body.old::before {
+  background: url('/src/images/3.png') no-repeat center center;
+  background-size: cover;
+  height: 100%;
+  left: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  will-change: transform;
+  z-index: -1;
+  opacity: 0.3;
+}

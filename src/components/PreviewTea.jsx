@@ -1,17 +1,18 @@
-import { Box, Paper, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { isSend } from "../components/slices/inputNameSlice";
+import { Box, Paper, Typography } from '@mui/material';
+import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { isSend } from '../components/slices/inputNameSlice';
+import './PreviewTea.css';
 
-const tea = ["#9DBEA2", "#FE8261", "#9A5B46"];
-const bubble = ["#8F3939", "#FFCE9F", "#3A3B59"];
+const tea = ['#9DBEA2', '#FE8261', '#9A5B46'];
+const bubble = ['#8F3939', '#FFCE9F', '#3A3B59'];
 
 const fonts = [
-  "Ysabeau SC",
-  "Caprasimo",
-  "Pathway Extreme",
-  "Lexend Peta",
-  "Josefin Slab",
+  'Ysabeau SC',
+  'Caprasimo',
+  'Pathway Extreme',
+  'Lexend Peta',
+  'Josefin Slab',
 ];
 
 const lighter = (col, amt) => {
@@ -25,21 +26,25 @@ const lighter = (col, amt) => {
   let g = (num & 0x0000ff) + amt;
   g = g > 255 ? 255 : g < 0 ? 0 : g;
 
-  return "#" + (g | (b << 8) | (r << 16)).toString(16);
+  return '#' + (g | (b << 8) | (r << 16)).toString(16);
 };
 
 const calculateScale = (i) => {
   switch (i) {
-    case "S":
+    case 'S':
       return 1;
-    case "M":
+    case 'M':
       return 1.2;
-    case "L":
+    case 'L':
       return 1.45;
     default:
       return 1;
   }
 };
+
+function getRandomNumber() {
+  return Math.floor(Math.random() * 14) - 10;
+}
 
 const PreviewTea = () => {
   const dispatch = useDispatch();
@@ -57,9 +62,10 @@ const PreviewTea = () => {
   const foundTapioca = tapiocaState || 0;
 
   const isNameSend = useSelector((state) => state.name.isSend);
-  const [nameState, setNameState] = useState("");
+  const [nameState, setNameState] = useState('');
+  const isAnimated = useSelector((state) => state.animation.isAnimated);
 
-  const foundSize = sizeState || "S";
+  const foundSize = sizeState || 'S';
   const scaledSize = calculateScale(foundSize);
 
   useEffect(() => {
@@ -67,35 +73,57 @@ const PreviewTea = () => {
       setNameState(name);
       dispatch(isSend(false));
     }
-  }, [isNameSend]);
+  }, [isNameSend, dispatch, name]);
 
   const font = useSelector((state) => state.font.font);
   const foundFont = font ? font : 0;
 
+  const bubbleClass = isAnimated ? 'bubble' : '';
+
+  const fillingState = useSelector((state) => state.filling.filling);
+  let filling;
+  if (fillingState === 0) {
+    filling = 1;
+  } else {
+    filling = fillingState;
+  }
   return (
     <Box justifyContent="center">
       <Paper
         sx={{
-          height: "60vh",
-          borderRadius: "16px 16px 4px 4px ",
+          height: '60vh',
+          borderRadius: '16px 16px 4px 4px ',
         }}
         elevation={0}
       >
         <Box>
           <Box
             sx={{
-              height: "50vh",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
+              height: '50vh',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
             }}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width={220}
               viewBox={`0 0 133.2 188.9`}
+              style={{
+                animation: isAnimated ? 'imageAnimation 3s infinite' : '',
+              }}
               transform={`scale(${scaledSize}, ${scaledSize})`}
             >
+              <defs>
+                <clipPath id="cut-off">
+                  <path
+                    d="M109.1,71.7l-8.9,81.9c-1.4,13-12.3,22.9-25.4,22.9l-2.3,0l-14.8,0c-0.8,0-1.5,0-2.2-0.1h0c-12-1.1-21.7-10.6-23-22.8l-8.6-82c3.8,1.4,7.6,2.7,11.3,3.7c1.7,0.5,3.4,0.9,5.1,1.3h0c2.1,0.5,4.3,0.9,6.4,1.3l0,0c1.9,0.3,3.7,0.6,5.6,0.8c2.5,0.3,5,0.5,7.5,0.6c8,0.4,16.1,0,24.3-1.3C92.5,76.8,100.8,74.7,109.1,71.7z"
+                    // d="M41.4,182.9c-4,0-7.6-2.2-9.6-5.7c-0.7-1.2-1.1-2.6-1.3-4l-12-108.6l-7.6,0c-2.8,0-5.1-2.3-5.1-5.1c0-0.2,0-0.4,0-0.6c0.3-2.6,2.5-4.5,5.1-4.5H14l105.1,0.2h3.1c2.8,0,5.1,2.3,5.1,5.1c0,0.2,0,0.4,0,0.6c-0.3,2.6-2.5,4.5-5,4.5h-7.6l-12.4,108.6c-0.2,1.9-1,3.8-2.1,5.3c-2.1,2.8-5.3,4.4-8.7,4.4L41.4,182.9z"
+                    transform={`scale(1, ${100 / filling})`}
+                  />
+                </clipPath>
+              </defs>
+
               <g id="background">
                 <path
                   fill={`${lighter(tea[foundCup], 90)}`}
@@ -135,7 +163,7 @@ const PreviewTea = () => {
                   d="M73.5,1.6c4.4,0.6,6.7,1.7,6.7,3.1c0,2-6.1,3.5-13.5,3.5c-7.5,0-13.5-1.6-13.5-3.6c0-1.6,3.6-2.9,9.2-3.3"
                 />
               </g>
-              <g id="tea">
+              <g id="tea" clipPath="url(#cut-off)">
                 <path
                   opacity="0.52"
                   fill={`${lighter(tea[foundTea], -20)}`}
@@ -146,34 +174,62 @@ const PreviewTea = () => {
                   d="M28.9,119.1l3.6,34.5c1.4,13,12.3,22.9,25.3,22.9l17.1,0c13,0,24-9.8,25.4-22.9l6.2-57.2C79.6,85,61.3,112.6,28.9,119.1z"
                 />
               </g>
-              <g id="bubble">
+              <g id={`${bubbleClass}`} clipPath="url(#cut-off)">
                 <path
                   fill={`${bubble[foundTapioca]}`}
                   d="M95.9,144.5c-0.7,2.3-3.2,3.6-5.4,2.8c-2.3-0.7-3.5-3.2-2.8-5.5c0.7-2.3,3.2-3.6,5.4-2.8C95.4,139.7,96.6,142.2,95.9,144.5z"
+                  className={`${bubbleClass}_1`}
+                  style={{
+                    transform: `translate(1px, ${getRandomNumber()}px)`,
+                  }}
                 />
                 <path
                   fill={`${lighter(bubble[foundTapioca], -10)}`}
                   d="M80.1,127.4c-0.8,2.6-3.5,4-6.1,3.2c-2.6-0.8-4-3.6-3.2-6.1c0.8-2.6,3.5-4,6.1-3.2C79.5,122,80.9,124.8,80.1,127.4z"
+                  className={`${bubbleClass}`}
+                  style={{
+                    transform: `translate(1px, ${getRandomNumber()}px)`,
+                  }}
                 />
                 <path
                   fill={`${lighter(bubble[foundTapioca], 8)}`}
                   d="M47.8,137.6c-0.8,2.5-3.5,3.9-6,3.1c-2.5-0.8-3.9-3.5-3.1-6.1c0.8-2.5,3.5-3.9,6-3.1C47.2,132.4,48.6,135.1,47.8,137.6z"
+                  className={`${bubbleClass}_2`}
+                  style={{
+                    transform: `translate(1px, ${getRandomNumber()}px)`,
+                  }}
                 />
                 <path
                   fill={`${lighter(bubble[foundTapioca], 10)}`}
                   d="M65.6,140.6c-0.6,1.8-2.4,2.7-4.2,2.2c-1.7-0.6-2.7-2.4-2.2-4.2c0.6-1.8,2.4-2.7,4.2-2.2C65.2,136.9,66.2,138.8,65.6,140.6z"
+                  className={`${bubbleClass}_1`}
+                  style={{
+                    transform: `translate(1px, ${getRandomNumber()}px)`,
+                  }}
                 />
                 <path
                   fill={`${lighter(bubble[foundTapioca], -16)}`}
                   d="M56.2,162.6c-0.7,2.2-3,3.4-5.2,2.7c-2.2-0.7-3.4-3-2.7-5.2c0.7-2.2,3-3.4,5.2-2.7C55.7,158.1,56.9,160.4,56.2,162.6z"
+                  className={`${bubbleClass}_2`}
+                  style={{
+                    transform: `translate(1px, ${getRandomNumber()}px)`,
+                  }}
                 />
                 <path
                   fill={`${lighter(bubble[foundTapioca], 12)}`}
                   d="M48.9,116.3c-0.7,2.2-3,3.4-5.1,2.7c-2.1-0.7-3.3-3-2.7-5.2c0.7-2.2,3-3.4,5.1-2.7C48.4,111.8,49.6,114.1,48.9,116.3z"
+                  className={`${bubbleClass}`}
+                  style={{
+                    transform: `translate(1px, ${getRandomNumber()}px)`,
+                  }}
                 />
                 <path
                   fill={`${bubble[foundTapioca]}`}
                   d="M82.8,161.8c-0.9,2.7-3.8,4.3-6.5,3.4c-2.7-0.9-4.2-3.8-3.4-6.5c0.9-2.7,3.8-4.3,6.5-3.4C82.1,156.1,83.6,159,82.8,161.8z"
+                  className={`${bubbleClass}`}
+                  style={{
+                    transform: `translate(1px, ${getRandomNumber()}px)`,
+                  }}
                 />
               </g>
             </svg>

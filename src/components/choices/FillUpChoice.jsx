@@ -1,31 +1,14 @@
 import { Grid, Slider, Typography } from '@mui/material';
 import React from 'react';
-import { useDispatch } from 'react-redux';
-import { getSize } from '../slices/sizeSlice';
-const marks = [
-  {
-    value: 0,
-    label: 'S',
-  },
-  {
-    value: 50,
-    label: 'M',
-  },
+import { useSelector, useDispatch } from 'react-redux';
+import { getFilling } from '../slices/fillingSlice';
 
-  {
-    value: 100,
-    label: 'L',
-  },
-];
-
-const SizeChoice = () => {
+const FillUpChoice = () => {
   const dispatch = useDispatch();
+  const fillingState = useSelector((state) => state.filling.filling);
 
-  const handleChange = (event, value) => {
-    const selectedMark = marks.find((mark) => mark.value === value);
-    if (selectedMark) {
-      dispatch(getSize(selectedMark.label));
-    }
+  const handleChange = (event, newValue) => {
+    dispatch(getFilling(newValue));
   };
 
   return (
@@ -33,16 +16,14 @@ const SizeChoice = () => {
       <Grid container justifyContent="center" alignItems="center" p={1}>
         <Grid item xs={2} lg={5}>
           <Typography textAlign="left" pl={2}>
-            SIZE
+            FILLING
           </Typography>
         </Grid>
         <Grid item xs={1} justifyContent="center" />
         <Grid item xs={8} lg={5} justifyContent="center">
           <Slider
-            aria-label="Restricted values"
-            defaultValue={0}
-            step={null}
-            marks={marks}
+            aria-label="Volume"
+            value={fillingState}
             onChange={handleChange}
           />
         </Grid>
@@ -52,4 +33,4 @@ const SizeChoice = () => {
   );
 };
 
-export default SizeChoice;
+export default FillUpChoice;

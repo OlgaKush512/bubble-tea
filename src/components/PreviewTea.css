@@ -1,0 +1,69 @@
+@keyframes imageAnimation {
+  0% {
+    transform: rotate(0deg);
+    opacity: 1;
+  }
+  30% {
+    transform: rotate(2deg);
+    opacity: 0.8;
+  }
+  60% {
+    transform: rotate(-2deg);
+    opacity: 0.85;
+  }
+  80% {
+    transform: rotate(2deg);
+    opacity: 0.9;
+  }
+}
+
+@keyframes bubbleAnimation {
+  0% {
+    transform: translate(1px, 0);
+  }
+  50% {
+    transform: translate(1px, -10px);
+  }
+  100% {
+    transform: translate(1px, 0);
+  }
+}
+
+@keyframes bubbleAnimation_1 {
+  0% {
+    transform: translate(1px, 0);
+  }
+  50% {
+    transform: translate(5px, -15px);
+  }
+  50% {
+    transform: translate(1px, -15px);
+  }
+  100% {
+    transform: translate(1px, 0);
+  }
+}
+
+@keyframes bubbleAnimation_2 {
+  0% {
+    transform: translate(1px, 0);
+  }
+  50% {
+    transform: translate(3px, -40px);
+  }
+  100% {
+    transform: translate(1px, -5);
+  }
+}
+
+.bubble {
+  animation: bubbleAnimation 3s infinite;
+}
+
+.bubble_1 {
+  animation: bubbleAnimation_1 4s infinite;
+}
+
+.bubble_2 {
+  animation: bubbleAnimation_2 6s infinite;
+}

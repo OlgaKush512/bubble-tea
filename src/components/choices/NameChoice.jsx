@@ -1,15 +1,14 @@
-import { Grid, IconButton, TextField, Typography } from "@mui/material";
-import { useSelector, useDispatch } from "react-redux";
-import { getName, isSend } from "../slices/inputNameSlice";
-import { SvgConfirm } from "../../tools/svgImages";
+import { Grid, IconButton, TextField, Typography } from '@mui/material';
+import { useSelector, useDispatch } from 'react-redux';
+import { getName, isSend } from '../slices/inputNameSlice';
+import { SvgConfirm } from '../../tools/svgImages';
 
 const NameChoice = () => {
   const dispatch = useDispatch();
   const name = useSelector((state) => state.name.name);
-  console.log(`name: ${name}`);
 
   const handleKeyDown = (e) => {
-    if (e.key === "Enter") {
+    if (e.key === 'Enter') {
       dispatch(isSend(true));
     }
   };
@@ -27,7 +26,7 @@ const NameChoice = () => {
           id="outlined-basic"
           variant="outlined"
           size="small"
-          sx={{ width: "100%" }}
+          sx={{ width: '100%' }}
           value={name}
           InputProps={{
             endAdornment: (
@@ -42,6 +41,7 @@ const NameChoice = () => {
           }}
           onChange={(e) => dispatch(getName(e.target.value))}
           onKeyDown={handleKeyDown}
+          inputProps={{ style: { textAlign: 'center' } }}
         />
       </Grid>
     </Grid>
